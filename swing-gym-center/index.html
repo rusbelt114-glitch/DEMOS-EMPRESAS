@@ -1,59 +1,68 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101211">
-  <title>Swing Gym Center | Demo</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101112">
+<title>Swing Gym · Demo administrativa</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0d0e0e;color:#fff;font-family:system-ui,sans-serif;--accent:#ffda23;--card:#1b1b1b;--ink:#fff;--muted:#c4c4c4;--bg:#0d0e0e}body.verde{--accent:#b6d1a8;--card:#153d36;--ink:#fff;--muted:#c5d8d2;--bg:#09241f;background:var(--bg)}main{max-width:560px;margin:auto;padding:0 18px 100px}.bar{display:flex;align-items:center;justify-content:space-between;padding:17px 0}.brand{font-size:21px;font-weight:950;font-style:italic;letter-spacing:-1px}.brand em{color:var(--accent)}.pill{font-size:11px;color:var(--muted);letter-spacing:.15em}.switch{border:1px solid #777;color:var(--ink);background:transparent;border-radius:20px;padding:8px 12px;cursor:pointer}.visual{position:relative;height:310px;border-radius:22px;overflow:hidden;background:#181818}.visual img{width:200%;max-width:none;position:absolute;top:-5px;left:0}.verde .visual img{left:-100%}.hero-label{font-size:12px;color:var(--muted);letter-spacing:.18em;margin:24px 0 6px}.heading{font-size:28px;letter-spacing:-1px;margin:0 0 18px}.grid{display:grid;gap:12px}.tile{display:flex;gap:16px;align-items:center;text-align:left;width:100%;background:linear-gradient(120deg,var(--card),#262625);color:var(--ink);border:1px solid #4a4a45;border-radius:20px;padding:19px;cursor:pointer}.verde .tile{background:linear-gradient(120deg,var(--card),#246055)}.icon{border:2px solid var(--accent);color:var(--accent);height:52px;width:52px;display:grid;place-items:center;border-radius:50%;font-size:24px;flex:none}.tile strong{font-size:20px;display:block}.tile small{color:var(--muted);font-size:13px}.arrow{margin-left:auto;background:var(--accent);color:#121212;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;font-size:25px}.note{color:var(--muted);font-size:12px}.row{padding:16px 0;border-bottom:1px solid #555;display:flex;justify-content:space-between;gap:10px}.row strong{display:block}.row small{color:var(--muted)}.badge{color:var(--accent);font-size:13px;white-space:nowrap}.back{background:transparent;border:0;color:var(--accent);font-size:18px;padding:18px 0;cursor:pointer}.panel{background:var(--card);border:1px solid #494949;border-radius:20px;padding:20px}.day{width:100%;background:#252525;color:white;border:1px solid #777;border-radius:12px;padding:13px;font-size:15px;margin:6px 0}.verde .day{background:#163c35}.nav{position:fixed;bottom:0;left:0;width:100%;background:var(--bg);border-top:1px solid #444;padding:12px;text-align:center}.nav button{background:none;border:0;color:var(--accent);font-size:22px;cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid var(--accent)}@media(max-width:380px){.visual{height:260px}}
+</style>
 </head>
 <body>
-  <main class="shell">
-    <header class="top">
-      <a class="back" href="../">← Catálogo</a>
-      <span class="demo">DEMO · DATOS FICTICIOS</span>
-    </header>
-    <section class="hero">
-      <p class="eyebrow">PANEL ADMINISTRATIVO</p>
-      <h1>Swing Gym Center</h1>
-      <p>Clientes, membresías, entrenadores y horarios en un solo lugar.</p>
-    </section>
-    <nav aria-label="Secciones">
-      <button class="active" data-tab="resumen">Resumen</button>
-      <button data-tab="clientes">Clientes</button>
-      <button data-tab="horarios">Horarios</button>
-      <button data-tab="planes">Planes</button>
-    </nav>
-    <section id="resumen" class="panel active">
-      <div class="metrics">
-        <article><span>Clientes registrados</span><strong id="total">0</strong></article>
-        <article><span>Membresías activas</span><strong id="active">0</strong></article>
-        <article><span>Clases semanales</span><strong>12</strong></article>
-      </div>
-      <h2>Próximas clases</h2>
-      <div id="upcoming" class="stack"></div>
-    </section>
-    <section id="clientes" class="panel">
-      <div class="heading"><h2>Clientes</h2><button class="primary" id="add">+ Agregar</button></div>
-      <input id="search" placeholder="Buscar cliente" aria-label="Buscar cliente">
-      <div id="clientList" class="stack"></div>
-    </section>
-    <section id="horarios" class="panel"><h2>Horarios y entrenadores</h2><div id="schedule" class="stack"></div></section>
-    <section id="planes" class="panel"><h2>Planes de membresía</h2><div class="stack">
-      <article class="item"><b>Mensual</b><small>Acceso general · 30 días</small></article>
-      <article class="item"><b>Trimestral</b><small>Acceso general · 90 días</small></article>
-      <article class="item"><b>Personalizado</b><small>Entrenamiento con instructor</small></article>
-    </div></section>
-    <p class="notice">Prototipo demostrativo. No procesa pagos ni almacena datos reales; los cambios se mantienen únicamente durante esta sesión.</p>
-  </main>
-  <dialog id="newClient">
-    <form method="dialog" id="clientForm">
-      <h2>Nuevo cliente de prueba</h2>
-      <label>Nombre<input name="name" required maxlength="60" autocomplete="off"></label>
-      <label>Plan<select name="plan"><option>Mensual</option><option>Trimestral</option><option>Personalizado</option></select></label>
-      <div class="actions"><button value="cancel">Cancelar</button><button class="primary" value="save">Guardar</button></div>
-    </form>
-  </dialog>
+<main>
+<header class="bar">
+<div>
+<div class="brand">SWING <em>GYM</em>
+</div>
+<span class="pill">ADMINISTRACIÓN · DEMO</span>
+</div>
+<button class="switch" id="theme">Cambiar color</button>
+</header>
+<div id="app">
+</div>
+</main>
+<nav class="nav">
+<button id="home" aria-label="Volver al inicio">⌂</button>
+</nav>
+<script>
+const art='gym-visual.webp';const app=document.querySelector('#app');const theme=document.querySelector('#theme');theme.onclick=()=>{document.body.classList.toggle('verde');theme.textContent=document.body.classList.contains('verde')?'Colores del gym':'Cambiar color'};document.querySelector('#home').onclick=home;
+const data={clientes:[['Ana Pérez','Plan mensual · Vence el 15/11','Al día'],['Luis Gómez','Plan pareja · Vence el 08/11','Pendiente'],['María Torres','Plan mensual · Vence el 02/12','Al día']],entrenadores:[['Carlos R.','Fuerza · Lunes y martes','Disponible'],['Laura M.','Baile · Miércoles y viernes','Disponible'],['Pedro G.','Funcional · Consultar horario','Ocupado']],planes:[['Mensual','30 días','USD 35'],['Pareja','30 días · 2 personas','USD 60'],['Por visita','Acceso por un día','USD 5']]};
+function home(){app.innerHTML=`<div class="visual">
+<img src="${art}" alt="Concepto visual deportivo de Swing Gym">
+</div>
+<p class="hero-label">PANEL ADMINISTRATIVO · DATOS FICTICIOS</p>
+<h1 class="heading">Todo bajo control.</h1>
+<div class="grid">${[['clientes','♟','Clientes','Socios y mensualidades'],['horarios','▦','Horarios','Fechas y disponibilidad'],['entrenadores','⚑','Entrenadores','Equipo y disponibilidad'],['planes','◉','Planes y cuotas','Planes, duración y precios']].map(x=>`<button class="tile" data-page="${x[0]}">
+<span class="icon">${x[1]}</span>
+<span>
+<strong>${x[2]}</strong>
+<small>${x[3]}</small>
+</span>
+<span class="arrow">›</span>
+</button>`).join('')}</div>
+<p class="note">Demostración visual con datos ficticios.</p>`;app.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>openPage(b.dataset.page));window.scrollTo(0,0)}
+function openPage(p){const titles={clientes:'Clientes',horarios:'Horarios y disponibilidad',entrenadores:'Entrenadores',planes:'Planes y cuotas'};app.innerHTML=`<button class="back">‹ Inicio</button>
+<p class="hero-label">SWING GYM · DEMO</p>
+<h1 class="heading">${titles[p]}</h1>
+<p class="note">Toda la información es ficticia.</p>
+<div class="panel" id="content">
+</div>`;app.querySelector('.back').onclick=home;let c=document.querySelector('#content');if(p==='horarios'){const schedule={'Lunes':'6:00–8:00 PM','Martes':'Todo el día','Miércoles':'8:00–11:00 AM','Jueves':'Sin disponibilidad','Viernes':'2:00–5:00 PM'};c.innerHTML=`<label for="fecha">Selecciona una fecha</label>
+<input type="date" class="day" id="fecha">
+<p class="note">Disponibilidad de ejemplo por día</p>
+<div id="list">${Object.entries(schedule).map(([a,b])=>`<div class="row">
+<strong>${a}</strong>
+<span class="badge">${b}</span>
+</div>`).join('')}</div>`;c.querySelector('#fecha').onchange=e=>{if(!e.target.value)return;const d=new Date(e.target.value+'T12:00:00');const days=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];let name=days[d.getDay()];c.querySelector('#list').innerHTML=`<div class="row">
+<strong>${name}</strong>
+<span class="badge">${schedule[name]||'Sin datos de ejemplo'}</span>
+</div>`}}else c.innerHTML=data[p].map(x=>`<div class="row">
+<div>
+<strong>${x[0]}</strong>
+<small>${x[1]}</small>
+</div>
+<span class="badge">${x[2]}</span>
+</div>`).join('');window.scrollTo(0,0)}home();
+</script>
 </body>
 </html>
