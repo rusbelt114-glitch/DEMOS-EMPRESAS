@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101211">
+  <title>Swing Gym Center | Demo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <a class="back" href="../">← Catálogo</a>
+      <span class="demo">DEMO · DATOS FICTICIOS</span>
+    </header>
+    <section class="hero">
+      <p class="eyebrow">PANEL ADMINISTRATIVO</p>
+      <h1>Swing Gym Center</h1>
+      <p>Clientes, membresías, entrenadores y horarios en un solo lugar.</p>
+    </section>
+    <nav aria-label="Secciones">
+      <button class="active" data-tab="resumen">Resumen</button>
+      <button data-tab="clientes">Clientes</button>
+      <button data-tab="horarios">Horarios</button>
+      <button data-tab="planes">Planes</button>
+    </nav>
+    <section id="resumen" class="panel active">
+      <div class="metrics">
+        <article><span>Clientes registrados</span><strong id="total">0</strong></article>
+        <article><span>Membresías activas</span><strong id="active">0</strong></article>
+        <article><span>Clases semanales</span><strong>12</strong></article>
+      </div>
+      <h2>Próximas clases</h2>
+      <div id="upcoming" class="stack"></div>
+    </section>
+    <section id="clientes" class="panel">
+      <div class="heading"><h2>Clientes</h2><button class="primary" id="add">+ Agregar</button></div>
+      <input id="search" placeholder="Buscar cliente" aria-label="Buscar cliente">
+      <div id="clientList" class="stack"></div>
+    </section>
+    <section id="horarios" class="panel"><h2>Horarios y entrenadores</h2><div id="schedule" class="stack"></div></section>
+    <section id="planes" class="panel"><h2>Planes de membresía</h2><div class="stack">
+      <article class="item"><b>Mensual</b><small>Acceso general · 30 días</small></article>
+      <article class="item"><b>Trimestral</b><small>Acceso general · 90 días</small></article>
+      <article class="item"><b>Personalizado</b><small>Entrenamiento con instructor</small></article>
+    </div></section>
+    <p class="notice">Prototipo demostrativo. No procesa pagos ni almacena datos reales; los cambios se mantienen únicamente durante esta sesión.</p>
+  </main>
+  <dialog id="newClient">
+    <form method="dialog" id="clientForm">
+      <h2>Nuevo cliente de prueba</h2>
+      <label>Nombre<input name="name" required maxlength="60" autocomplete="off"></label>
+      <label>Plan<select name="plan"><option>Mensual</option><option>Trimestral</option><option>Personalizado</option></select></label>
+      <div class="actions"><button value="cancel">Cancelar</button><button class="primary" value="save">Guardar</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
