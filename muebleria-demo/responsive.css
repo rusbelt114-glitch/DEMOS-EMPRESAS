@@ -1,0 +1,43 @@
+/* Containment and intrinsic sizing: the page and dialogs fit the viewport. */
+html,body{width:100%;min-width:0;max-width:100%;margin:0;overflow-x:clip}
+body>svg:first-child{position:absolute!important;width:0!important;height:0!important;overflow:hidden!important;inset:0 auto auto 0;pointer-events:none}
+main,.header,.mode-bar,.save-status{width:100%;min-width:0}
+main>*{min-width:0}.header>*,.hero>*,.filters>*,.products>*,.detail-layout>*,.admin-product>*,.admin-toolbar>*,.edit-grid>*,.admin-intro>*,.admin-bottom>*{min-width:0}
+.hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.detail-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.filters{grid-template-columns:minmax(0,1fr) minmax(0,185px) minmax(0,175px)}
+input,select,button{max-width:100%}input,select{min-width:0}p,h1,h2,h3,dd,small{overflow-wrap:anywhere}
+.category-tabs{flex-wrap:wrap;overflow:visible;margin-right:0;gap:7px}
+.detail-visual{width:100%;min-width:0;overflow:hidden}.detail-visual svg{display:block;width:100%;max-width:100%;height:auto;min-width:0}
+dialog{position:fixed;inset:0;width:calc(100vw - 32px);max-width:880px;max-height:calc(100dvh - 32px);margin:auto;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box}
+dialog[open]{animation:appear .15s ease-out}body:has(dialog[open]){overflow:hidden}
+#editor{width:calc(100vw - 32px);max-width:550px;padding:24px}
+.close-button{position:absolute;top:10px;right:10px;width:40px;height:40px}
+.detail-copy{min-width:0}.detail-copy h2{padding-right:12px}.detail-copy .usd,.detail-copy .ves{overflow-wrap:anywhere}
+.detail-description{font-size:12px;line-height:1.6;border-top:1px solid var(--line);margin:16px 0;padding-top:12px}.detail-description summary{min-height:40px;cursor:pointer;display:list-item;list-style-position:inside;color:var(--blue)}
+.detail-description p{font-size:12px;color:var(--muted)}
+.pager{display:flex;align-items:center;justify-content:center;gap:18px;margin:22px 0 12px}.pager p{font-size:12px;margin:0;min-width:90px;text-align:center}.pager button{background:#e7eff5;color:#345d7b;min-height:44px;min-width:44px;padding:10px 16px;border-radius:10px;font-size:12px}.pager button:disabled{opacity:.35;cursor:default}
+.catalog-section{scroll-margin-top:12px}.how-it-works{margin-top:35px}.owner-extras{margin-top:24px;border-top:1px solid var(--line);padding-top:15px}.owner-extras>summary{cursor:pointer;min-height:44px;font-size:13px;color:var(--blue)}.owner-extras .admin-bottom{margin:8px 0 30px;border:0;padding-top:10px}
+.header .catalog-back{display:flex}.header .brand{flex-shrink:1}.header nav{flex-shrink:0}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.filters{grid-template-columns:minmax(0,1fr) minmax(0,160px) minmax(0,155px)}}
+@media(max-width:620px){
+ .demo-ribbon{font-size:7px;padding:6px 8px;line-height:1.3;letter-spacing:.8px}.demo-ribbon span{display:none}
+ .header{padding:10px 14px;gap:8px}.brand{font-size:23px;letter-spacing:-1px}.brand small{font-size:5.5px;letter-spacing:.7px}.header nav{gap:6px}.catalog-back{font-size:10px;min-height:36px}.icon-button,.favorite-nav{min-height:36px;padding:6px 9px}.icon-button{width:34px}.favorite-nav{font-size:10px}
+ .mode-bar{padding:0 14px;margin-bottom:10px;gap:6px}.mode-bar button{min-height:36px;padding:8px 10px;font-size:10px;flex:1}
+ main{padding:0 14px}.hero{display:block;min-height:0;border-radius:16px}.hero-copy{padding:16px 18px}.hero-copy h1{font-size:25px;line-height:1.12;margin:0;letter-spacing:-.6px}.hero-copy h1 br{display:none}.hero-copy h1 em{white-space:normal}.hero-copy .eyebrow{font-size:7px;margin-bottom:7px;letter-spacing:1px}.hero-copy>p:not(.eyebrow),.hero-copy>.primary,.hero-tags,.hero-scene,.scene-caption{display:none}
+ .rate-bar{padding:10px 0;gap:8px}.rate-bar>div{gap:8px}.currency-icon{font-size:9px;padding:7px}.rate-bar strong{font-size:10px}.rate-bar p{font-size:9px;margin-top:2px}.manual-rate-note{font-size:8px;max-width:70px;text-align:right}
+ .catalog-section{padding-top:15px}.section-intro{margin-bottom:12px}.section-intro .eyebrow{display:none}.section-intro h2{font-size:27px;letter-spacing:-.8px}
+ .category-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding-bottom:8px}.category-tabs button{font-size:9px;padding:7px 3px;min-height:34px;white-space:normal;border-radius:9px}
+ .filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:0}.search-wrap{grid-column:1/-1}.search-wrap input{min-height:38px;padding:9px 9px 9px 36px}.search-wrap svg{top:10px;left:10px;width:17px;height:17px}.filters select{min-height:38px;padding:8px;font-size:10px}.filters label{font-size:9px;margin-bottom:3px}
+ .results-line{margin:8px 0 10px;gap:6px}.results-line p{font-size:9px;margin:4px 0}.availability-toggle{font-size:9px;white-space:nowrap;gap:5px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-art{aspect-ratio:1.5;border-radius:12px}.stock{font-size:7px;top:8px;left:6px;padding:4px 6px}.heart{top:4px;right:4px;width:27px;height:27px;font-size:18px}.product-info{padding:9px 1px 0}.product-kind{font-size:6.5px;letter-spacing:.4px;margin-bottom:5px}.product h3{font-size:18px;line-height:1.1;min-height:39px;margin-bottom:4px}.product-measures{font-size:8px;min-height:25px;margin-bottom:6px;line-height:1.5}.product .usd{font-size:18px;margin-bottom:3px;letter-spacing:-.4px}.usd small{font-size:8px}.ves{font-size:9px}.product-foot{margin-top:7px;padding-top:5px;gap:2px}.product-foot>span{display:none}.product-foot button{font-size:10px;min-height:36px;width:100%;text-align:left;padding:5px 0}
+ .pager{margin:12px 0 10px;gap:14px}.pager button{min-height:40px;padding:9px 13px;font-size:11px}.pager p{font-size:10px}
+ .how-it-works{display:none}footer{margin-top:20px;padding-bottom:18px;gap:10px}.footer-brand{font-size:20px}footer p{font-size:9px}footer .text-button{font-size:10px;min-height:40px}
+ dialog{width:calc(100vw - 24px);max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);border-radius:18px}.detail-layout{display:block;width:100%}.detail-visual{height:145px;max-height:24dvh;display:block}.detail-visual svg{width:100%;height:100%;object-fit:contain}.detail-copy{padding:18px}.detail-copy .eyebrow{font-size:8px;margin-bottom:8px}.detail-copy h2{font-size:27px;line-height:1.1;margin:8px 0 10px;letter-spacing:-.8px}.detail-copy .usd{font-size:26px;margin-top:12px}.detail-copy .ves{font-size:12px;margin-bottom:8px}.detail-copy>p{font-size:10px;line-height:1.5}.detail-copy .specs{font-size:11px;margin:12px 0}.specs>div{padding:7px 0}.detail-copy .primary{width:100%;gap:12px;padding:12px;min-height:44px}.detail-note{font-size:9px!important;margin-bottom:0}.detail-description{font-size:11px;margin:10px 0;padding-top:6px}.detail-description p{font-size:11px}.detail-description summary{min-height:36px}
+ #editor{width:calc(100vw - 24px);max-width:calc(100vw - 24px);padding:20px}.edit-grid{grid-template-columns:minmax(0,1fr)}.editor-top h2{font-size:25px}.edit-help{font-size:10px}.editor-actions{gap:15px}
+ .admin-intro{margin:14px 0}.admin-intro .eyebrow{font-size:8px}.admin-intro h1{font-size:30px;margin:10px 0}.admin-intro p:not(.eyebrow){font-size:11px}.admin-intro>.primary{font-size:11px;min-height:40px}.owner-note{font-size:10px;padding:12px 14px}.owner-rate{padding:10px 12px}.owner-rate p{font-size:9px}.owner-rate strong{font-size:11px}.admin-stats{margin:12px 0}.admin-stats>div{padding:12px}.admin-stats strong{font-size:27px}.admin-toolbar{margin:16px 0 12px;grid-template-columns:minmax(0,1fr) minmax(0,125px);gap:8px}.admin-toolbar label{font-size:9px;margin-bottom:5px}.admin-toolbar input,.admin-toolbar select{font-size:10px;padding:9px;min-height:40px}.admin-product{grid-template-columns:65px minmax(0,1fr);gap:10px;padding:12px}.admin-photo{height:70px}.admin-description h3{font-size:18px;margin:5px 0}.admin-description p{font-size:10px;margin:4px 0 8px}.admin-description small{font-size:8px}.admin-buttons{gap:7px}.admin-buttons button{font-size:10px;padding:10px 6px;min-height:42px}.state-label{font-size:9px;padding:5px 8px}
+}
+@media(max-width:350px){.header .brand{font-size:20px}.brand small{font-size:5px}.catalog-back{font-size:9px}.header nav{gap:4px}.category-tabs button{font-size:8px}.hero-copy h1{font-size:23px}.product h3{font-size:16px}.product .usd{font-size:17px}.mode-bar button{font-size:9px}}
+@media print{.pager,.owner-extras{display:none!important}.hero{display:none!important}.category-tabs{display:none!important}}
+@media(prefers-reduced-motion:reduce){dialog[open]{animation:none}}
