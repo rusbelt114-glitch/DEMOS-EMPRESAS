@@ -21,6 +21,7 @@
 .visual-menu-list[hidden]{display:none}
 .visual-menu-list button{padding:13px 10px;text-align:left;border:1px solid #505a51;border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
 .visual-menu-list button:focus-visible{outline:3px solid var(--accent)}
+.catalog-link{display:inline-flex;align-items:center;min-height:44px;margin:0 0 8px;color:var(--accent);font-size:13px;text-decoration:none}.catalog-link:hover{text-decoration:underline}.catalog-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 </style>
 </head>
 <body>
@@ -33,6 +34,7 @@
 </div>
 <button class="switch" id="theme">Cambiar color</button>
 </header>
+<a class="catalog-link" href="../">‹ Volver al catálogo</a>
 <div id="app">
 </div>
 </main>
@@ -42,7 +44,14 @@
 <script>
 const art='gym-visual.webp';const app=document.querySelector('#app');const theme=document.querySelector('#theme');theme.onclick=()=>{document.body.classList.toggle('verde');theme.textContent=document.body.classList.contains('verde')?'Colores del gym':'Cambiar color'};document.querySelector('#home').onclick=home;
 const data={clientes:[['Ana Pérez','Plan mensual · Vence el 15/11','Al día'],['Luis Gómez','Plan pareja · Vence el 08/11','Pendiente'],['María Torres','Plan mensual · Vence el 02/12','Al día']],entrenadores:[['Carlos R.','Fuerza · Lunes y martes','Disponible'],['Laura M.','Baile · Miércoles y viernes','Disponible'],['Pedro G.','Funcional · Consultar horario','Ocupado']],planes:[['Mensual','30 días','USD 35'],['Pareja','30 días · 2 personas','USD 60'],['Por visita','Acceso por un día','USD 5']]};
-function home(){
+const pages=['clientes','horarios','entrenadores','planes'];
+function currentPage(){const page=location.hash.slice(1);return pages.includes(page)?page:'inicio';}
+function renderRoute(){const page=currentPage();if(page==='inicio')renderHome();else renderPage(page);}
+function navigate(page){if(currentPage()!==page){history.pushState(null,'',page==='inicio'?location.pathname+location.search:'#'+page);}renderRoute();}
+function home(){navigate('inicio');}
+function openPage(page){if(pages.includes(page))navigate(page);}
+window.addEventListener('popstate',renderRoute);
+function renderHome(){
   app.innerHTML = `<section class="visual" aria-label="Panel principal de Swing Gym">
     <img src="${art}" alt="Portada de Swing Gym con cuatro módulos: Clientes, Horarios, Entrenadores, y Planes y cuotas">
     <button class="visual-hit hit-clients" data-page="clientes" aria-label="Abrir Clientes"></button>
@@ -63,7 +72,7 @@ function home(){
   trigger.addEventListener("click",()=>{menu.hidden=!menu.hidden;trigger.setAttribute("aria-expanded",String(!menu.hidden));});
   window.scrollTo(0,0);
 }
-function openPage(p){const titles={clientes:'Clientes',horarios:'Horarios y disponibilidad',entrenadores:'Entrenadores',planes:'Planes y cuotas'};app.innerHTML=`<button class="back">‹ Inicio</button>
+function renderPage(p){const titles={clientes:'Clientes',horarios:'Horarios y disponibilidad',entrenadores:'Entrenadores',planes:'Planes y cuotas'};app.innerHTML=`<button class="back">‹ Inicio</button>
 <p class="hero-label">SWING GYM · DEMO</p>
 <h1 class="heading">${titles[p]}</h1>
 <p class="note">Toda la información es ficticia.</p>
@@ -74,7 +83,7 @@ function openPage(p){const titles={clientes:'Clientes',horarios:'Horarios y disp
 <div id="list">${Object.entries(schedule).map(([a,b])=>`<div class="row">
 <strong>${a}</strong>
 <span class="badge">${b}</span>
-</div>`).join('')}</div>`;c.querySelector('#fecha').onchange=e=>{if(!e.target.value)return;const d=new Date(e.target.value+'T12:00:00');const days=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];let name=days[d.getDay()];c.querySelector('#list').innerHTML=`<div class="row">
+</div>`).join('')}</div>`;c.querySelector('#fecha').onchange=e=>{if(!e.target.value){c.querySelector('#list').innerHTML=Object.entries(schedule).map(([day,time])=>`<div class="row"><strong>${day}</strong><span class="badge">${time}</span></div>`).join('');return;}const d=new Date(e.target.value+'T12:00:00');const days=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];let name=days[d.getDay()];c.querySelector('#list').innerHTML=`<div class="row">
 <strong>${name}</strong>
 <span class="badge">${schedule[name]||'Sin datos de ejemplo'}</span>
 </div>`}}else c.innerHTML=data[p].map(x=>`<div class="row">
@@ -83,7 +92,7 @@ function openPage(p){const titles={clientes:'Clientes',horarios:'Horarios y disp
 <small>${x[1]}</small>
 </div>
 <span class="badge">${x[2]}</span>
-</div>`).join('');window.scrollTo(0,0)}home();
+</div>`).join('');window.scrollTo(0,0)}renderRoute();
 </script>
 </body>
 </html>
